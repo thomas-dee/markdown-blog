@@ -1,29 +1,77 @@
 html, body {
     padding: 0;
     margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: #f7f7f7;
+}
+
+header h4 {
+    color: darkgrey;
+    margin-top: 0px;
+    font-style: italic;
+}
+
+header h1 {
+    margin-bottom: 0px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: right;
+    padding-right: 16px;
+}
+
+hr {
+    color: darkgrey;
+    background-color: darkgrey;
+    height: 1px;
+    border: none;
 }
 
 .blog {
     max-width: 900px;
-    background: #f7f7f7;
     margin: 0 auto;
-    padding: 50px;
+    padding: 30px;
 }
 
 .markdown {
     max-width: 800px;
 }
 
-.markdown h1 {
-    text-align: center;
+h1 {
+    font-size: 18pt;
 }
 
+h2 {
+    font-size: 16pt;
+}
+
+h3 {
+    font-size: 14pt;
+}
+
+h4 {
+    font-size: 12pt;
+}
+
+.markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4,
 .markdown h5,
 .markdown h6 {
     text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: darkblue;
 }
 
 .markdown blockquote {
