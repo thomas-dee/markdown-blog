@@ -4,6 +4,7 @@
         "Newer" => "Neuer",
         "Overview" => "Übersicht",
         "First" => "Erster",
-        "Disclaimer" => "Datenschutzerklärung"
+        "Disclaimer" => "Datenschutzerklärung+",
+        "Read post" => "Lesen..."
     );
 ?>

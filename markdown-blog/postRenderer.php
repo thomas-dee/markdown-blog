@@ -11,6 +11,14 @@
         return $render;
     }
 
+    function getPostImagePath($fileName) {
+        $image_path = getPostSlug($fileName) . ".jpg";
+        if (file_exists($image_path)) {
+            return $image_path;
+        }
+        return NULL;
+    }
+
     function getPostSlug($fileName) {
         // Post slug is filename, without .md extension
         return substr($fileName, 0, -3);
