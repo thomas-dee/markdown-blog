@@ -1,3 +1,0 @@
-# userTrack v3 released
-
-Blog post coming soon...
