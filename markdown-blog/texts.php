@@ -4,7 +4,10 @@
         "Newer" => "Neuer",
         "Overview" => "Übersicht",
         "First" => "Erster",
-        "Disclaimer" => "Datenschutzerklärung+",
-        "Read post" => "Lesen..."
+        "Read post" => "Lesen...",
+
+        // Page titles
+        "page:about" => "Über mich",
+        "page:disclaimer" => "Datenschutzerklärung+"
     );
 ?>

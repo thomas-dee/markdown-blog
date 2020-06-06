@@ -7,14 +7,32 @@ require_once 'getText.php';
 require_once 'twitter-card.php';
 require_once 'open-graph-tags.php';
 
-$postSlug = $_GET['post'];
-$post = 'posts/' . $postSlug;
+$post = $_GET['post'];
 
-if (file_exists($post)) {
+$possible_files = glob('./posts/*'.$post);
+$is_page = false;
+
+if (count($possible_files) == 0) {
+    // its probably a "page" file
+    $possible_files = glob('./pages/'.$post);
+    $is_page = true;
+    $overview_title = "Blog";
+}
+
+if (count($possible_files) > 0) {
+    $post = $possible_files[0];
+    $postSlug = basename($post);
     $date_time = getPostDateTime($postSlug);
     $image_path = getPostImagePath($post);
     $markdown = file_get_contents($post);
     $postTitle = getPostTitle($markdown);
+
+    if ($is_page) {
+        $page_base = substr($postSlug, 0, -3);
+        // Note: title should be set in texts.php!
+        $page_title = T('page:'.$page_base);
+    }
+    
 } else {
     $markdown = "# 404 <br/> Post '$postSlug' not found ðŸ˜¢ ";
     $postTitle = 'Blog post not found!';

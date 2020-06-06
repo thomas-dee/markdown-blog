@@ -8,6 +8,7 @@
 <body>
     <div class="blog">
         <?php include 'header.php'; ?>
+        <?php include 'blog-info.php'; ?>
         <?php include 'postListRenderer.php'; ?>
     </div>
 </body>

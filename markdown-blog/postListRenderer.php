@@ -1,4 +1,5 @@
 <?php
+
 require_once 'postRenderer.php';
 require_once 'getText.php';
 
@@ -9,11 +10,11 @@ if (isset($_GET["page"])) {
     $page=intval($_GET["page"]);
 }
 
-function not_hidden($name) {
+function post_not_hidden($name) {
     return substr(basename($name), 0, 1) != "_";
 }
 
-$all_files = array_filter(glob($path), "not_hidden");
+$all_files = array_filter(glob($path), "post_not_hidden");
 arsort($all_files);
 $files = array_slice($all_files, $page * $posts_per_page, $posts_per_page);
 
@@ -21,11 +22,17 @@ foreach ($files as $file) {
     $md = file_get_contents($file);
 
     $file_name = basename($file);
+    $date_time = getPostDateTime($file_name);
     $image_path = getPostImagePath($file);
+
+    $post_link = substr($file_name, 0, -3); // remove extension
+    if ($date_time != NULL) {
+        $post_link = substr($post_link, 17);
+    }
 
     // Get only summary (first lines of post)
     $md = getFirstLines($md, 3);
-    $md = addTitleHref($md, $file_name);
+    //$md = addTitleHref($md, $post_link);
     ?>
     <section class="blog-post">
         <div>
@@ -35,8 +42,9 @@ foreach ($files as $file) {
             </div>
         <?php } ?>
         <div class="post-list-entry">
-            <?php echo renderMarkdown($md, getPostDateTime($file_name)); ?>
-            <a href="<?php echo explode('.', $file_name)[0] ?>"><?php echo T("Read post"); ?></a>
+            <a href="<?php echo $post_link ?>">
+                <?php echo renderMarkdown($md, $date_time); ?>
+            </a>
         </div>
         </div>
         </section>

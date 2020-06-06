@@ -2,6 +2,13 @@
     require_once 'Parsedown.php';
     $Parsedown = new Parsedown();
 
+    function renderMarkdownFile($post) {
+        $postSlug = basename($post);
+        $date_time = getPostDateTime($postSlug);
+        $markdown = file_get_contents($post);
+        return renderMarkdown($markdown, $date_time);
+    }
+    
     function renderMarkdown($markdown, $date_time = NULL) {
         global $Parsedown;
         $render = $Parsedown->text($markdown);
@@ -40,10 +47,10 @@
         return $matches[1];
     }
 
-    function addTitleHref($postContent, $fileName) {
+    function addTitleHref($postContent, $link) {
         // Make post title clickable (links to post slug)
         $firstLinePattern = '/^# (.*)(\r\n|\r|\n)$/m';
-        $replacement  = '# [${1}]('. getPostSlug($fileName) . ')${2}'; // # [title](slug)NEW_LINE
+        $replacement  = '# [${1}]('. $link . ')${2}'; // # [title](slug)NEW_LINE
         return preg_replace($firstLinePattern, $replacement, $postContent);
     }
 
