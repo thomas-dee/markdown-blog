@@ -31,8 +31,15 @@ if (count($possible_files) > 0) {
         $page_base = substr($postSlug, 0, -3);
         // Note: title should be set in texts.php!
         $page_title = T('page:'.$page_base);
+        if ($page_title == 'page:'.$page_base) {
+            $page_title = $page_base;
+        }
+        $postTitle = $page_title;
+        if (T("blog:subtitle") != "blog:subtitle") {
+            $postTitle .= " - ".T("blog:subtitle");
+        }
     }
-    
+
 } else {
     $markdown = "# 404 <br/> Post '$postSlug' not found ðŸ˜¢ ";
     $postTitle = 'Blog post not found!';
@@ -48,8 +55,8 @@ if (count($possible_files) > 0) {
     <title><?php echo $postTitle ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php 
-        renderTwitterMetaInfo($postSlug, $markdown, "TheThomasDee"); 
-        renderOpenGraphMetaInfo($postSlug, $markdown, "TheThomasDee"); 
+        renderTwitterMetaInfo($postSlug, $markdown, T("twitter:account")); 
+        renderOpenGraphMetaInfo($postSlug, $markdown, T("twitter:account")); 
         ?>
 </head>
 <body>

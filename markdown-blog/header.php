@@ -11,11 +11,11 @@
     global $overview_title;
 
     if ($page_title == "") {
-        $page_title = "Blog";
+        $page_title = T("blog:title");
     }
 
-    if ($page_subtitle == "") {
-        $page_subtitle = "Thomas Döring";
+    if ($page_subtitle == "" && T("blog:subtitle") != "blog:subtitle") {
+        $page_subtitle = T("blog:subtitle");
     }
 
     if ($overview_title == "") {
@@ -35,10 +35,17 @@
                         $page_base = substr(basename($page), 0, -3);
                         // Note: title should be set in texts.php!
                         $title = T('page:'.$page_base);
+                        if ($title == 'page:'.$page_base) {
+                            $title = $page_base;
+                        }
                         print('<li><a href="/'.$page_base.'">'.$title.'</a></li>');
                     }
+
+                    if (T("twitter:account") != "twitter:account") { ?>
+                        <li><a href="https://twitter.com/<?php echo T("twitter:account"); ?>"><img style="margin-top: -7px;" width="32" src="resources/Twitter_Logo_Blue.svg" /></a></li>
+                    <?php
+                    }
                 ?>
-                <li><a title="Link zu meinem Twitterprofil" href="https://twitter.com/thethomasdee"><img style="margin-top: -7px;" width="32" src="resources/Twitter_Logo_Blue.svg" /></a></li>
             </ul>
         </nav>
         <hr style="margin-top: 0px;"/>

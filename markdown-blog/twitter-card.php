@@ -1,5 +1,10 @@
 <?php
     function createTwitterCardMetaInfo($markdown, $twitter_user, $image_path = NULL, $image_info = NULL) {
+        if ($twitter_user == "twitter:account") {
+            // no twitter account defined
+            return array();
+        }
+
         $lines = explode(PHP_EOL, $markdown);
 
         $title = NULL;
