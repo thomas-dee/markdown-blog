@@ -6,15 +6,19 @@ require_once 'getText.php';
 $path = './posts/*.md';
 $posts_per_page = 5;
 $page = 0;
+$show_hidden = isset($_GET["show_hidden"]);
 if (isset($_GET["page"])) {
     $page=intval($_GET["page"]);
 }
 
 function post_not_hidden($name) {
-    return substr(basename($name), 0, 1) != "_";
+    return $show_hidden || substr(basename($name), 0, 1) != "_";
 }
 
-$all_files = array_filter(glob($path), "post_not_hidden");
+$all_files = glob($path);
+if (!$show_hidden) {
+    $all_files = array_filter($all_files, "post_not_hidden");
+}
 arsort($all_files);
 $files = array_slice($all_files, $page * $posts_per_page, $posts_per_page);
 
@@ -34,8 +38,7 @@ foreach ($files as $file) {
     $md = getFirstLines($md, 3);
     //$md = addTitleHref($md, $post_link);
     ?>
-    <section class="blog-post">
-        <div>
+    <div class="blog-post">
         <?php if ($image_path != NULL) { ?>
             <div class="post-list-image-container">
                 <img class="post-list-image" src="<?php echo $image_path; ?>" />
@@ -46,8 +49,7 @@ foreach ($files as $file) {
                 <?php echo renderMarkdown($md, $date_time); ?>
             </a>
         </div>
-        </div>
-        </section>
+    </div>    
     <hr style="margin-bottom: 20px;"/>
 <?php 
 } 

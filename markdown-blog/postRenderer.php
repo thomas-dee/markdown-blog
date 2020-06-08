@@ -8,12 +8,12 @@
         $markdown = file_get_contents($post);
         return renderMarkdown($markdown, $date_time);
     }
-    
+
     function renderMarkdown($markdown, $date_time = NULL) {
         global $Parsedown;
         $render = $Parsedown->text($markdown);
         if (is_a($date_time, 'DateTime')) {
-            return '<small>' . $date_time->format("d.m.Y - G:i") . '</small><br />' . $render;
+            $render = '<small>' . $date_time->format("d.m.Y - G:i") . '</small><br />' . $render;
         }
         return $render;
     }

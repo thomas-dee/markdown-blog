@@ -41,7 +41,7 @@ if (count($possible_files) > 0) {
     }
 
 } else {
-    $markdown = "# 404 <br/> Post '$postSlug' not found ðŸ˜¢ ";
+    $markdown = "# 404 <br/> Post '" . substr($post, 0, -3) . "' not found &#128533;";
     $postTitle = 'Blog post not found!';
     $date_time = NULL;
     $image_path = NULL;
@@ -49,11 +49,17 @@ if (count($possible_files) > 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <link rel="stylesheet" href="blog.css">
     <title><?php echo $postTitle ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php
+        require_once 'getText.php';
+        if (T("blog:author") != "blog:author") {
+            print('<meta name="author" content="' . T("blog:author"). '" />');
+        }
+    ?>
     <?php 
         renderTwitterMetaInfo($postSlug, $markdown, T("twitter:account")); 
         renderOpenGraphMetaInfo($postSlug, $markdown, T("twitter:account")); 
@@ -69,9 +75,9 @@ if (count($possible_files) > 0) {
                 </div><?php
             }
         ?>
-        <div class='markdown'>
+        <article class='markdown'>
             <?php echo renderMarkdown($markdown, $date_time); ?>
-        </div>
+        </article>
         <hr style="margin-bottom: 20px;"/>
     </div>
 </body>

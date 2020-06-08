@@ -6,7 +6,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="blog.css">
