@@ -3,8 +3,6 @@ Extremly simple "static" PHP blog that renders markdown posts. No installation o
 
 To create a post just write a new `.md` file. Everything else just works.
 
-**Note**: It's not a full blogging platform, does not currently come with any premade themes, it's just a script and specific folder structure to load and display markdown files.
-
 ## Why?
 You already have a site and want to integrate a blog within it.
 I [asked others for recommendations](https://www.indiehackers.com/post/is-there-any-tool-to-create-static-blog-posts-0e88ebc949), but most suggestions involved some complex stand-alone blogging platform or service.  
@@ -26,8 +24,13 @@ Copy the `markdown-blog` folder to a PHP server.
 You can also change the name of the folder, normally you would name it `blog` so you can access it like `yoursite.com/blog`.
 
 ## Usage
-You can create new posts by adding new `post-url-slug.md` files in the `posts` folder.
+You can create new posts by adding new `some-name.md` files in the `posts` folder.
 The post must start with a `# Heading`, which will also be the title of the post and used in the `<title>` tag.
+
+_(added by thomas-dee)_  
+If you preceed the file name with a formatted datetime string, posts will also have a timestamp: `2020-06-09_20-20_some_name.md`.
+
+... they will also be better sorted :-)
 
 ## Customization
 The advantage of having something simple like this is that it's really easy to customize.
